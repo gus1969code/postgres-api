@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>baras</title>
+    <script src="./html5-qrcode.min.js"></script>
+  </head>
+  <body>
+    <main>
+      <button onclick="ejecutar()">Scaner</button>
+
+      <div style="text-align: center">
+        <div id="reader" style="width: 500px"></div>
+        <div id="show" style="display: none"></div>
+        <h4>Scanner reslt</h4>
+        <p id="result"></p>
+      </div>
+
+      <script>
+        const html5Qrcode = new Html5Qrcode("reader");
+        const qrCodeSuccessCalback = (decodedText, decodedResult) => {
+          if (decodedText) {
+            document.getElementById("show").style.display = "block";
+            document.getElementById("result").textContent = decodedText;
+            html5Qrcode.stop();
+          }
+        };
+        const config = {
+          fps: 10,
+          qrbox: { width: 250, height: 250 },
+                  rememberLastUsedCamera: true,
+                   // Only support camera scan type.
+                   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+                   experimentalFeatures: { useBarCodeDetectorIfSupported: false }, rememberLastUsedCamera: true, 
+                   verbose: true }
+      function ejecutar() {
+          html5Qrcode.start(
+            { facingMode: "user" },
+            config,
+            qrCodeSuccessCalback,
+          );
+        }
+      </script>
+    </main>
+  </body>
+</html>
