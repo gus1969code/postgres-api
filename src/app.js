@@ -30,5 +30,5 @@ app.use(sistemasRouter, barrasRouter, pruebasRouter, API_equipos, app_equipos);
 
 //qr();
 
-app.listen(PORT);
-console.log("Server on port", PORT);
+app.listen(3000);
+console.log("Server on port", 3000);
