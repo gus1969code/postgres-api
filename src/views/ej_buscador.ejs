@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ej_buscador</title>
+    <style>
+      /* Estilo generales */
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        color: #fff;
+      }
+      /* Contenedor principal*/
+      .container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0);
+        backdrop-filter: blur(10px);
+        width: 90%;
+        max-width: 500px;
+      }
+
+      /* Titulo */
+      h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+      }
+
+      /* Campo de entrada de texto */
+
+      input[type="text"] {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1em;
+        margin-bottom: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        outline: none;
+      }
+
+      /* Playholder del campo de entrada   */
+      input[type="text"]::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* Estilo de los boptones    */
+
+      button {
+        background-color: #ff6f61;
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s ease tr;
+        margin: 10px;
+      }
+
+      /* Efecto hover en los botones  */
+
+      button:hover {
+        background-color: #c8acaa;
+        transform: scale(1.1);
+      }
+
+      /*  Contenedor de resultados */
+
+      #result {
+        margin-top: 20px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+        color: #fff;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transition: max-height 0.5s ease opacity;
+      }
+
+      /* Clase para mostrar los resultados*/
+
+      #result.visible {
+        max-height: 500px;
+        opacity: 1;
+        padding: 20px;
+      }
+
+      /* Estilo de los elementos de resultado */
+
+      .result-item {
+        text-align: left;
+        margin-bottom: 10px;
+      }
+
+      .result-item strong {
+        display: block;
+        font-size: 1.1em;
+        margin-bottom: 5px;
+      }
+
+      /* Estilo espècial parta el boton espectacular */
+
+      .spectacular-button {
+        background-color: #4caf50;
+        animation: pulse 1.5s infinite;
+      }
+
+      /* Animacion de pulso para boton espectacular */
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>ej_buscador</h1>
+
+      <!-- Campo de entrada    -->
+      <input type="text" id="codigo" placeholder="introduzca el CODIGO" />
+      <!--Boton para buscar por CODIGO -->
+      <button id="searchButton">Buscar por CODIGO</button>
+      <!--Boton para Scaner -->
+      <button id="searchScanner" class="spectacular-button">Scanner</button>
+      <!-- Contenedor para mostrar los resultado -->
+      <div id="result">
+        <!--Aca se muestran los resultados-->
+      </div>
+    </div>
+  </body>
+</html>

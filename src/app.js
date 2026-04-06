@@ -5,6 +5,7 @@ import barrasRouter from "./routes/app/barras.routes.js";
 import pruebasRouter from "./routes/app/pruebas.routes.js";
 import API_equipos from "./routes/API/api_equipos.routes.js";
 import app_equipos from "./routes/app/app_equipos.routes.js";
+import ej_buscador from "./routes/app/ej_buscador.routes.js";
 import url from "url";
 import path from "path";
 //import qr from "./controllers/qr_code.js"
@@ -26,9 +27,9 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //_Routes
-app.use(sistemasRouter, barrasRouter, pruebasRouter, API_equipos, app_equipos);
+app.use(sistemasRouter, barrasRouter, pruebasRouter, API_equipos, app_equipos, ej_buscador);
 
 //qr();
 
-app.listen(3000);
-console.log("Server on port", 3000);
+app.listen(PORT);
+console.log("Server on port", PORT);
