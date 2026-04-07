@@ -3,10 +3,10 @@ import { Router } from "express";
 const router = Router();
 
 
-router.get('/barras', (req, res) => {
+router.get('/scanner', (req, res) => {
 
 
-  res.render('barras');
+  res.render('sanner');
 })
 
 

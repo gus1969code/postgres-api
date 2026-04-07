@@ -140,11 +140,32 @@
       <!--Boton para buscar por CODIGO -->
       <button id="searchButton">Buscar por CODIGO</button>
       <!--Boton para Scaner -->
-      <button id="searchScanner" class="spectacular-button">Scanner</button>
+      <button id="scannerButton" class="spectacular-button">Scanner</button>
       <!-- Contenedor para mostrar los resultado -->
       <div id="result">
         <!--Aca se muestran los resultados-->
       </div>
     </div>
+
+   <script>
+        // Esperar a que el DOM esté completamente cargado
+        document.addEventListener("DOMContentLoaded", function() {
+            // Obtener referencias a los elementos del DOM
+            const scannerButton = document.getElementById('scannerButton');
+         
+            // Evento para redirigir al scanner
+            scannerButton.addEventListener('click', function() {
+                window.location.href = '/scsnner';
+            });
+            
+        });
+    </script>
+
+
+
+
+
+
+
   </body>
 </html>

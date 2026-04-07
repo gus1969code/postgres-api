@@ -1,7 +1,7 @@
 import express from "express";
 import { PORT } from "./config.js";
 import sistemasRouter from "./routes/app/sistemas.routes.js";
-import barrasRouter from "./routes/app/barras.routes.js";
+import scannerRouter from "./routes/app/scanner.routes.js";
 import pruebasRouter from "./routes/app/pruebas.routes.js";
 import API_equipos from "./routes/API/api_equipos.routes.js";
 import app_equipos from "./routes/app/app_equipos.routes.js";
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //_Routes
-app.use(indexRouter, sistemasRouter, barrasRouter, pruebasRouter, API_equipos, app_equipos);
+app.use(indexRouter, sistemasRouter, scannerRouter, pruebasRouter, API_equipos, app_equipos);
 
 //qr();
 
