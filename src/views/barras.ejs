@@ -12,7 +12,7 @@
       <button onclick="ejecutar()">Scaner</button>
 
       <div style="text-align: center">
-        <div id="reader" style="width: 500px"></div>
+        <div id="reader" style="width: 100vh"></div>
         <div id="show" style="display: none"></div>
         <h4>Scanner reslt</h4>
         <p id="result"></p>
@@ -30,7 +30,7 @@
         const config =         
         {
           fps: 10,
-          qrbox: { width: 150, height: 250 },
+          qrbox: { width: 250, height: 150 },
                   rememberLastUsedCamera: true,
                    // Only support camera scan type.
                    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],

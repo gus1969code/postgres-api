@@ -3,10 +3,10 @@ import { Router } from "express";
 const router = Router();
 
 
-router.get('/ej_buscador', (req, res) => {
+router.get('/', (req, res) => {
 
 
-  res.render('ej_buscador');
+  res.render('index');
 })
 
 
