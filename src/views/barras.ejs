@@ -27,9 +27,10 @@
             html5Qrcode.stop();
           }
         };
-        const config = {
+        const config =         
+        {
           fps: 10,
-          qrbox: { width: 250, height: 250 },
+          qrbox: { width: 150, height: 250 },
                   rememberLastUsedCamera: true,
                    // Only support camera scan type.
                    supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
@@ -37,7 +38,7 @@
                    verbose: true }
       function ejecutar() {
           html5Qrcode.start(
-            { facingMode: "user" },
+            { facingMode: "environment" },
             config,
             qrCodeSuccessCalback,
           );
