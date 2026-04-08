@@ -19,16 +19,10 @@
         color: #fff;
       }
 
-.scanner{
-
-width: 100%;
-display: none;
-
-
-}
-
-
-
+      .scanner {
+        width: 100%;
+        text-align: center;
+      }
 
       /* Contenedor principal*/
       .container {
@@ -41,6 +35,12 @@ display: none;
         width: 90%;
         max-width: 500px;
       }
+
+.cambiar_menu{
+
+  display: none;
+}
+
 
       /* Titulo */
       h1 {
@@ -148,15 +148,15 @@ display: none;
   <body>
     <!--Elementos del scanner-->
 
-    <div class="scanner" style="text-align: center">
+    <div id="scanner"  class="scanner cambiar_menu" >
       <div id="reader" style="width: 100%"></div>
       <div id="show" style="display: none"></div>
-      <p id="result"></p>
+     
     </div>
 
     <!--Elementos del scanner-->
 
-    <div class="container">
+    <div id="menu" class="container">
       <h1>Equipos</h1>
       <!-- Campo de entrada    -->
       <input type="text" id="codigo" placeholder="introduzca el CODIGO" />
@@ -179,13 +179,20 @@ display: none;
 
         // Evento para redirigir al scanner
         scannerButton.addEventListener("click", function () {
-          document
-            .querySelectorAll(".container")
-            .forEach((el) => (el.style.display = "none"));
-            document
-            .querySelectorAll(".scanner")
-            .forEach((el) => (el.style.display = "block"));
+         
+          // document
+          //   .querySelectorAll(".container")
+          //   .forEach((el) => (el.style.display = "none"));
+          // document
+          //   .querySelectorAll(".scanner")
+          //   .forEach((el) => (el.style.display = "block"));
+
+          document.getElementById("menu").classList.add("cambiar_menu");
+          document.getElementById("scanner").classList.remove("cambiar_menu");
+          
+          
           ejecutar();
+
         });
 
         //-Elementos del scanner-->
@@ -194,9 +201,9 @@ display: none;
         const qrCodeSuccessCalback = (decodedText, decodedResult) => {
           if (decodedText) {
             document.getElementById("show").style.display = "block";
-            document.getElementById("result").textContent = decodedText;
+            document.getElementById("codigo").textContent = decodedText;
+             document.getElementById("menu").classList.remove("cambiar_menu");
             html5Qrcode.stop();
-            window.location.href = "/:123456";
           }
         };
         const config = {
