@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ej_buscador</title>
+    <script src="./html5-qrcode.min.js"></script>
+
     <style>
       /* Estilo generales */
       body {
@@ -16,6 +18,18 @@
         margin: 0;
         color: #fff;
       }
+
+.scanner{
+
+width: 100%;
+display: none;
+
+
+}
+
+
+
+
       /* Contenedor principal*/
       .container {
         text-align: center;
@@ -132,13 +146,21 @@
     </style>
   </head>
   <body>
+    <!--Elementos del scanner-->
+
+    <div class="scanner" style="text-align: center">
+      <div id="reader" style="width: 100%"></div>
+      <div id="show" style="display: none"></div>
+      <p id="result"></p>
+    </div>
+
+    <!--Elementos del scanner-->
+
     <div class="container">
-      <h1>ej_buscador</h1>
-<h2>Codigo,</h2>
+      <h1>Equipos</h1>
       <!-- Campo de entrada    -->
       <input type="text" id="codigo" placeholder="introduzca el CODIGO" />
       <!--Boton para buscar por CODIGO -->
-
 
       <button id="searchButton">Buscar por CODIGO</button>
       <!--Boton para Scaner -->
@@ -149,25 +171,53 @@
       </div>
     </div>
 
-   <script>
-        // Esperar a que el DOM esté completamente cargado
-        document.addEventListener("DOMContentLoaded", function() {
-            // Obtener referencias a los elementos del DOM
-            const scannerButton = document.getElementById('scannerButton');
-         
-            // Evento para redirigir al scanner
-            scannerButton.addEventListener('click', function() {
-                window.location.href = '/scanner';
-            });
-            
+    <script>
+      // Esperar a que el DOM esté completamente cargado
+      document.addEventListener("DOMContentLoaded", function () {
+        // Obtener referencias a los elementos del DOM
+        const scannerButton = document.getElementById("scannerButton");
+
+        // Evento para redirigir al scanner
+        scannerButton.addEventListener("click", function () {
+          document
+            .querySelectorAll(".container")
+            .forEach((el) => (el.style.display = "none"));
+            document
+            .querySelectorAll(".scanner")
+            .forEach((el) => (el.style.display = "block"));
+          ejecutar();
         });
+
+        //-Elementos del scanner-->
+
+        const html5Qrcode = new Html5Qrcode("reader");
+        const qrCodeSuccessCalback = (decodedText, decodedResult) => {
+          if (decodedText) {
+            document.getElementById("show").style.display = "block";
+            document.getElementById("result").textContent = decodedText;
+            html5Qrcode.stop();
+            window.location.href = "/:123456";
+          }
+        };
+        const config = {
+          fps: 10,
+          qrbox: { width: 250, height: 150 },
+          // Only support camera scan type.
+          supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+          experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+          rememberLastUsedCamera: true,
+          verbose: true,
+        };
+        function ejecutar() {
+          html5Qrcode.start(
+            { facingMode: "environment" },
+            config,
+            qrCodeSuccessCalback,
+          );
+        }
+
+        //-Elementos del scanner-->
+      });
     </script>
-
-
-
-
-
-
-
   </body>
 </html>
