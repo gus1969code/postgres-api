@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
+<style>
+
+
+  div{
+
+background-color: blue;
+color: #db2e2e;
+width: 100vh;
+  }
+</style>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
@@ -12,9 +23,8 @@
       <button onclick="ejecutar()">Scaner</button>
 
       <div style="text-align: center">
-        <div id="reader" style="width: 100vh"></div>
+        <div id="reader" style="width: 500px"></div>
         <div id="show" style="display: none"></div>
-        <h4>Scanner reslt</h4>
         <p id="result"></p>
       </div>
 
@@ -25,18 +35,19 @@
             document.getElementById("show").style.display = "block";
             document.getElementById("result").textContent = decodedText;
             html5Qrcode.stop();
+            window.location.href = "/:123456";
           }
         };
-        const config =         
-        {
+        const config = {
           fps: 10,
           qrbox: { width: 250, height: 150 },
-                  rememberLastUsedCamera: true,
-                   // Only support camera scan type.
-                   supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
-                   experimentalFeatures: { useBarCodeDetectorIfSupported: false }, rememberLastUsedCamera: true, 
-                   verbose: true }
-      function ejecutar() {
+          // Only support camera scan type.
+          supportedScanTypes: [Html5QrcodeScanType.SCAN_TYPE_CAMERA],
+          experimentalFeatures: { useBarCodeDetectorIfSupported: false },
+          rememberLastUsedCamera: true,
+          verbose: true,
+        };
+        function ejecutar() {
           html5Qrcode.start(
             { facingMode: "environment" },
             config,
