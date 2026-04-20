@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Admin</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+body {
+    background: #f8f9fa;
+}
+
+.sidebar {
+    height: 100vh;
+    background: #343a40;
+    color: white;
+    padding: 20px;
+}
+
+.sidebar h4 {
+    margin-bottom: 20px;
+}
+
+.sidebar a {
+    color: white;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}
+
+.card {
+    border-radius: 12px;
+}
+
+.table-actions button {
+    margin-right: 5px;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+
+        <!-- Sidebar -->
+        <div class="col-2 sidebar">
+            <h4>Admin</h4>
+            <a href="#">Dashboard</a>
+            <a href="#">Equipos</a>
+            <a href="#">Usuarios</a>
+        </div>
+
+        <!-- Main -->
+        <div class="col-10 p-4">
+
+            <h2 class="mb-4">Gestión de Equipos</h2>
+
+            <div class="card p-3">
+
+                <div class="d-flex justify-content-between mb-3">
+                    <input type="text" id="search" class="form-control w-50" placeholder="Buscar equipo...">
+                    <button class="btn btn-primary">+ Nuevo</button>
+                </div>
+
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<script>
+let equipos = [];
+
+// 🔌 consumir API
+fetch("http://localhost:4000/api_equipos")
+    .then(res => res.json())
+    .then(data => {
+        equipos = data;
+        renderTable(equipos);
+    });
+
+function renderTable(data) {
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+
+    data.forEach((eq, index) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${eq.nombre}</td>
+                <td><span class="badge bg-secondary">${eq.codigo}</span></td>
+                <td>${eq.descripcion}</td>
+                <td class="table-actions">
+                    <button class="btn btn-sm btn-warning" onclick="editar(${index})">✏️</button>
+                    <button class="btn btn-sm btn-danger" onclick="borrar(${index})">🗑️</button>
+                    <button class="btn btn-sm btn-success" onclick="seleccionar(${index})">✔</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+function editar(i) {
+    alert("Editar: " + equipos[i].nombre);
+}
+
+function borrar(i) {
+    if (confirm("¿Eliminar equipo?")) {
+        equipos.splice(i, 1);
+        renderTable(equipos);
+    }
+}
+
+function seleccionar(i) {
+    alert("Seleccionado: " + equipos[i].nombre);
+}
+
+// 🔎 buscador pro
+document.getElementById("search").addEventListener("keyup", function() {
+    const filtro = this.value.toLowerCase();
+
+    const filtrados = equipos.filter(eq =>
+        eq.nombre.toLowerCase().includes(filtro) ||
+        eq.codigo.toLowerCase().includes(filtro) ||
+        eq.descripcion.toLowerCase().includes(filtro)
+    );
+
+    renderTable(filtrados);
+});
+</script>
+
+</body>
+</html>

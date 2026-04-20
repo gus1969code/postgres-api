@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Listado de Equipos</title>
+
+<style>
+body { font-family: Arial; margin: 20px; }
+
+#search {
+    padding: 8px;
+    width: 300px;
+    margin-bottom: 15px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+th { background: #f4f4f4; }
+
+button { margin-right: 5px; padding: 5px 10px; cursor: pointer; }
+
+.edit { background: #ffc107; }
+.delete { background: #dc3545; color: white; }
+.select { background: #28a745; color: white; }
+</style>
+
+</head>
+<body>
+
+<h2>Listado de Equipos</h2>
+
+<input type="text" id="search" placeholder="Buscar equipo...">
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Código</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+
+       
+
+    </tbody>
+</table>
+
+<script>
+
+let equipos = [];
+
+// Consumir API
+fetch("http://localhost:4000/api_equipos")
+    .then(res => res.json())
+    .then(data => {
+        equipos = data;
+        renderTable(equipos);
+    });
+
+function renderTable(data) {
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+
+    data.forEach((eq, index) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${eq.nombre}</td>
+                <td>${eq.codigo}</td>
+                <td>${eq.descripcion}</td>
+                <td>
+                    <button onclick="editar(${index})">Editar</button>
+                    <button onclick="borrar(${index})">Borrar</button>
+                    <button onclick="seleccionar(${index})">Seleccionar</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+
+
+
+
+// Convertimos los datos EJS a JS
+
+function editar(index) {
+    alert("Editar: " + equipos[index].nombre);
+}
+
+function borrar(index) {
+    if (confirm("¿Seguro que quieres borrar este equipo?")) {
+        equipos.splice(index, 1);
+        renderTable(equipos);
+    }
+}
+
+function seleccionar(index) {
+    alert("Seleccionado: " + equipos[index].nombre);
+}
+
+// Render dinámico (para búsqueda)
+function renderTable(data) {
+    const tbody = document.getElementById("tableBody");
+    tbody.innerHTML = "";
+
+    data.forEach((eq, index) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${eq.nombre}</td>
+                <td>${eq.codigo}</td>
+                <td>${eq.descripcion}</td>
+                <td>
+                    <button class="edit" onclick="editar(${index})">Editar</button>
+                    <button class="delete" onclick="borrar(${index})">Borrar</button>
+                    <button class="select" onclick="seleccionar(${index})">Seleccionar</button>
+                </td>
+            </tr>
+        `;
+    });
+}
+
+// Buscador
+document.getElementById("search").addEventListener("keyup", function() {
+    const filtro = this.value.toLowerCase();
+
+    const filtrados = equipos.filter(eq =>
+        eq.nombre.toLowerCase().includes(filtro) ||
+        eq.codigo.toLowerCase().includes(filtro) ||
+        eq.descripcion.toLowerCase().includes(filtro)
+    );
+
+    renderTable(filtrados);
+});
+</script>
+
+</body>
+</html>

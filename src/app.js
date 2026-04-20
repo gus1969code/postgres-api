@@ -1,9 +1,9 @@
 import express from "express";
 import { PORT } from "./config.js";
-import sistemasRouter from "./routes/app/sistemas.routes.js";
 import scannerRouter from "./routes/app/scanner.routes.js";
 import pruebasRouter from "./routes/app/pruebas.routes.js";
 import API_equipos from "./routes/API/api_equipos.routes.js";
+import API_sistemas from "./routes/API/api_sistemas.routes.js";
 import app_equipos from "./routes/app/app_equipos.routes.js";
 import indexRouter from "./routes/app/index.routes.js";
 import url from "url";
@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //_Routes
-app.use(indexRouter, sistemasRouter, scannerRouter, pruebasRouter, API_equipos, app_equipos);
+app.use(indexRouter, pruebasRouter,app_equipos,  API_equipos, API_sistemas);
 
 //qr();
 

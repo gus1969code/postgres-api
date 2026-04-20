@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Equipo dinámico</title>
+    <style>
+      body {
+        font-family: Arial;
+        background: #818d9a;
+        padding: 20px;
+      }
+
+      .card {
+        max-width: 800px;
+        margin: auto;
+        background: rgb(89, 174, 243);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+      }
+
+      .content {
+        padding: 20px;
+      }
+
+      .codigo {
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      ul {
+        padding-left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <img id="imagen" src="" alt="Imagen del equipo" />
+      <div class="content">
+        <h2 id="nombre"></h2>
+        <div class="codigo" id="codigo"></div>
+        <p id="descripcion"></p>
+
+        <h3>Historial</h3>
+        <ul id="historial"></ul>
+      </div>
+    </div>
+
+    <script>
+      // URL de tu API
+      const API_URL = "http://localhost:4000/equipos/19";
+
+      fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          // Asignar datos al HTML
+          console.log(data[0]);
+          document.getElementById("nombre").textContent = data[0].nombre;
+          document.getElementById("codigo").textContent =
+            "Código: " + data[0].codigo;
+          document.getElementById("descripcion").textContent = data[0].descripcion;
+          //document.getElementById("imagen").src = data.imagen;
+          document.getElementById("imagen").src =
+            "http://localhost:4000/img/bomba.jpg";
+          // Renderizar historial
+          const historialList = document.getElementById("historial");
+          historialList.innerHTML = "";
+
+          // data.historial.forEach((item) => {
+          //   const li = document.createElement("li");
+          //   li.textContent = item;
+          //   historialList.appendChild(li);
+          // });
+        })
+        .catch((error) => {
+          console.error("Error al cargar datos:", error);
+        });
+    </script>
+  </body>
+</html>

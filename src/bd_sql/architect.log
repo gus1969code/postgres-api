@@ -1,21 +1,1047 @@
 0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
-460  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-512  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-512  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
-551  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
-12207 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+582  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+632  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+632  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+671  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22464 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+852337 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+865319 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+883782 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+886064 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+887264 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+913120 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+944089 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+944090 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+955272 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+955273 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+974002 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+1015127 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+1016287 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@2b514172]
+1156574 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_secter_seq
+1156592 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_secter INTEGER NOT NULL DEFAULT nextval('public.sector_id_secter_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_secter)
+)
+1156593 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_secter_seq OWNED BY public.sector.id_secter
+1156593 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL,
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+1156593 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+1156594 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL,
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+1156594 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                id_equipo INTEGER NOT NULL,
+                id_secter INTEGER NOT NULL,
+                id_semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+1156594 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (id_secter)
+REFERENCES public.sector (id_secter)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1156595 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (id_semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1156595 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (id_sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1156595 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (id_equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1156599 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :11
+2009968 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property physicalName changed while monitoring pkTable
+2009968 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+2009969 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown column property autoIncrementSequenceName changed while monitoring pkTable
+2040558 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+2040559 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+2040559 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+2040559 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL,
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+2040559 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+2040560 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL,
+                sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+2040560 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+2040560 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+2040561 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+2040561 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+2040561 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+2040562 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :11
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+443  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+494  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+494  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+536  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+6454 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+6457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+6457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+6457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL,
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+6457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+6457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL,
+                sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+6458 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+6458 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+6458 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+6459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+6459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+6461 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :11
+18259 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE sector_id_sector_seq
+18260 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+18260 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sector_id_sector_seq OWNED BY sector.id_sector
+18260 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE semana (
+                id_semana INTEGER NOT NULL,
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+18261 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+18261 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE equipos (
+                id_equipo INTEGER NOT NULL,
+                sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+18261 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE tareas (
+                id_tarea INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+18261 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+18262 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+18262 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+18262 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+18263 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :11
+22186 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+483846 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+483847 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+499805 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+506965 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+506966 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+511995 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+511996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+511996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+511996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.semana_id_semana_seq
+511996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('public.semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+511996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.semana_id_semana_seq OWNED BY public.semana.id_semana
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE public.equipos_id_equipo_seq
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('public.equipos_id_equipo_seq'),
+                sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.equipos_id_equipo_seq OWNED BY public.equipos.id_equipo
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.tareas_id_tarea_seq
+511997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('public.tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+511998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.tareas_id_tarea_seq OWNED BY public.tareas.id_tarea
+511998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+511998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+511998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+511998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+511999 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :17
+987272 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@402e97b4]
+987280 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask starting on thread Objects-Adder
+987283 [Objects-Adder] INFO  ca.sqlpower.architect.swingui.PlayPen  - AddObjectsTask done
+987326 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.PlayPen  - Unknown object dropped in PlayPen: id_sistema: INTEGER
+1009391 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@402e97b4]
+1010527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@402e97b4]
+1011872 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@402e97b4]
+1025815 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE sector_id_sector_seq
+1025815 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+1025815 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sector_id_sector_seq OWNED BY sector.id_sector
+1025816 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE semana_id_semana_seq
+1025816 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+1025816 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE semana_id_semana_seq OWNED BY semana.id_semana
+1025816 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sistemas (
+                id_sistema INTEGER NOT NULL,
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+1025817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE SEQUENCE equipos_id_equipo_seq
+1025817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('equipos_id_equipo_seq'),
+                descripcion VARCHAR,
+                nombre VARCHAR NOT NULL,
+                sistema INTEGER NOT NULL,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+1025817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE equipos_id_equipo_seq OWNED BY equipos.id_equipo
+1025817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE tareas_id_tarea_seq
+1025817 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+1025818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE tareas_id_tarea_seq OWNED BY tareas.id_tarea
+1025818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1025818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1025818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1025818 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1025819 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :17
+1206452 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown SQLTypePhysicalProperties property name changed while monitoring pkTable
+1206453 [AWT-EventQueue-0] WARN  ca.sqlpower.sqlobject.ForeignKeyColumnUpdaterPoolingSPListener  - Warning: unknown UserDefinedSQLType property myAutoIncrement changed while monitoring pkTable
+1217957 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE sector_id_sector_seq
+1217957 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+1217957 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sector_id_sector_seq OWNED BY sector.id_sector
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE semana_id_semana_seq
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE semana_id_semana_seq OWNED BY semana.id_semana
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE sistemas_id_sistema_seq
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE sistemas (
+                id_sistema INTEGER NOT NULL DEFAULT nextval('sistemas_id_sistema_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE sistemas_id_sistema_seq OWNED BY sistemas.id_sistema
+1217958 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE equipos_id_equipo_seq
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('equipos_id_equipo_seq'),
+                descripcion VARCHAR,
+                nombre VARCHAR NOT NULL,
+                sistema INTEGER NOT NULL,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE equipos_id_equipo_seq OWNED BY equipos.id_equipo
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE tareas_id_tarea_seq
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE tareas_id_tarea_seq OWNED BY tareas.id_tarea
+1217959 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1217960 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1217960 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1217960 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1217960 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :19
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+455  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+509  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+509  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+549  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22083 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+22457 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.semana_id_semana_seq
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('public.semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.semana_id_semana_seq OWNED BY public.semana.id_semana
+22459 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
 CREATE SEQUENCE public.sistemas_id_sistema_seq
-12210 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
 
 CREATE TABLE public.sistemas (
                 id_sistema INTEGER NOT NULL DEFAULT nextval('public.sistemas_id_sistema_seq'),
-                nombre VARCHAR(20) NOT NULL,
+                nombre VARCHAR NOT NULL,
                 descripcion VARCHAR,
-                url_sistema VARCHAR,
-                CONSTRAINT id_sistema PRIMARY KEY (id_sistema)
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
 )
-12211 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
 
 
 ALTER SEQUENCE public.sistemas_id_sistema_seq OWNED BY public.sistemas.id_sistema
-12219 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :3
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.equipos_id_equipo_seq
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('public.equipos_id_equipo_seq'),
+                descripcion VARCHAR,
+                nombre VARCHAR NOT NULL,
+                sistema INTEGER NOT NULL,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.equipos_id_equipo_seq OWNED BY public.equipos.id_equipo
+22460 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.tareas_id_tarea_seq
+22461 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('public.tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+22461 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.tareas_id_tarea_seq OWNED BY public.tareas.id_tarea
+22461 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+22462 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+22462 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+22462 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+22470 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :19
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+939  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1000 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+1002 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1048 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22920 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+35862 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+35864 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+35864 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+35864 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.semana_id_semana_seq
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('public.semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.semana_id_semana_seq OWNED BY public.semana.id_semana
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.sistemas_id_sistema_seq
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL DEFAULT nextval('public.sistemas_id_sistema_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sistemas_id_sistema_seq OWNED BY public.sistemas.id_sistema
+35865 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.equipos_id_equipo_seq
+35866 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('public.equipos_id_equipo_seq'),
+                descripcion VARCHAR,
+                nombre VARCHAR NOT NULL,
+                sistema INTEGER NOT NULL,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+35866 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.equipos_id_equipo_seq OWNED BY public.equipos.id_equipo
+35878 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.tareas_id_tarea_seq
+35878 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('public.tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+35878 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.tareas_id_tarea_seq OWNED BY public.tareas.id_tarea
+35878 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+35879 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+35879 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+35879 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+35893 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :19
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+1006 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1063 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+1066 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+1105 [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+22939 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+118736 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@6a4e92a8]
+135864 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@6a4e92a8]
+169176 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@6a4e92a8]
+277090 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE public.sector_id_sector_seq
+277093 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sector (
+                id_sector INTEGER NOT NULL DEFAULT nextval('public.sector_id_sector_seq'),
+                nombre_sector VARCHAR NOT NULL,
+                CONSTRAINT sector_pk PRIMARY KEY (id_sector)
+)
+277093 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sector_id_sector_seq OWNED BY public.sector.id_sector
+277093 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.semana_id_semana_seq
+277094 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.semana (
+                id_semana INTEGER NOT NULL DEFAULT nextval('public.semana_id_semana_seq'),
+                numero INTEGER NOT NULL,
+                CONSTRAINT semana_pk PRIMARY KEY (id_semana)
+)
+277094 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.semana_id_semana_seq OWNED BY public.semana.id_semana
+277094 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.sistemas_id_sistema_seq
+277094 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.sistemas (
+                id_sistema INTEGER NOT NULL DEFAULT nextval('public.sistemas_id_sistema_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                CONSTRAINT sistemas_pk PRIMARY KEY (id_sistema)
+)
+277095 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.sistemas_id_sistema_seq OWNED BY public.sistemas.id_sistema
+277095 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.equipos_id_equipo_seq
+277095 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.equipos (
+                id_equipo INTEGER NOT NULL DEFAULT nextval('public.equipos_id_equipo_seq'),
+                nombre VARCHAR NOT NULL,
+                codigo VARCHAR NOT NULL,
+                descripcion VARCHAR,
+                URL_image VARCHAR,
+                sistema INTEGER NOT NULL,
+                CONSTRAINT equipos_pk PRIMARY KEY (id_equipo)
+)
+277095 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.equipos_id_equipo_seq OWNED BY public.equipos.id_equipo
+277095 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE public.tareas_id_tarea_seq
+277096 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE public.tareas (
+                id_tarea INTEGER NOT NULL DEFAULT nextval('public.tareas_id_tarea_seq'),
+                nombre VARCHAR NOT NULL,
+                descripcion_tarea VARCHAR NOT NULL,
+                equipo INTEGER NOT NULL,
+                sector INTEGER NOT NULL,
+                semana INTEGER NOT NULL,
+                CONSTRAINT tareas_pk PRIMARY KEY (id_tarea)
+)
+277096 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE public.tareas_id_tarea_seq OWNED BY public.tareas.id_tarea
+277096 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT sector_tareas_fk
+FOREIGN KEY (sector)
+REFERENCES public.sector (id_sector)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+277096 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT semana_tareas_fk
+FOREIGN KEY (semana)
+REFERENCES public.semana (id_semana)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+277097 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.equipos ADD CONSTRAINT sistemas_equipos_fk
+FOREIGN KEY (sistema)
+REFERENCES public.sistemas (id_sistema)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+277097 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.tareas ADD CONSTRAINT equipos_tareas_fk
+FOREIGN KEY (equipo)
+REFERENCES public.equipos (id_equipo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+277111 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :19

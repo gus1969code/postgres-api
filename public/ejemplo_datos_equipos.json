@@ -1,0 +1,11 @@
+{
+  "nombre": "Equipo Industrial X",
+  "codigo": "EQ-001",
+  "descripcion": "Equipo de alto rendimiento para procesos industriales.",
+  "imagen": "https://via.placeholder.com/800x300",
+  "historial": [
+    "2022 - Equipo adquirido",
+    "2023 - Mantenimiento general",
+    "2024 - Actualización de componentes"
+  ]
+}
